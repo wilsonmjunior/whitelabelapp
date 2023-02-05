@@ -10,7 +10,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
-import appConfig from "./config.json";
+import { APP_NAME } from "./config";
 import { Home } from './src/screens/Home';
 import { themeFazendao, themeMerx } from './src/styles/theme';
 
@@ -19,7 +19,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
-  const theme = useMemo(() => appConfig.app_name === 'fazendao' ? themeFazendao : themeMerx, []);
+  const theme = useMemo(() => APP_NAME === 'fazendao' ? themeFazendao : themeMerx, []);
   
   useEffect(() => {
     async function prepare() {
