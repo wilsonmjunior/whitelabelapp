@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { View } from 'react-native';
@@ -9,6 +10,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
+import appConfig from "./config.json";
 import { Home } from './src/screens/Home';
 import { themeFazendao, themeMerx } from './src/styles/theme';
 
@@ -17,6 +19,8 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
+  const theme = useMemo(() => appConfig.app_name === 'fazendao' ? themeFazendao : themeMerx, []);
+  
   useEffect(() => {
     async function prepare() {
       try {
@@ -44,7 +48,7 @@ export default function App() {
 
   return (
     <RNPProvider
-      theme={themeMerx}
+      theme={theme}
     >
       <View
         style={{ 

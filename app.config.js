@@ -1,4 +1,4 @@
-const appName = "merx";
+import appConfig from "./config.json";
 
 const configs = {
   merx: {
@@ -49,6 +49,6 @@ const configs = {
 
 export default ({ config }) => {
   return {
-    ...configs[appName],
+    ...configs[appConfig.app_name],
   };
 };
