@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start:fazendao": "./scripts/set-env.sh fazendao $npm_config_env && npx expo start --clear",
     "set:env": "echo \"$(cat .env.$npm_config_env)\" > .env",
     "start": "echo \"$(cat .env.$npm_config_env)\" > .env && npx expo start --clear",
     "android": "expo run:android",
