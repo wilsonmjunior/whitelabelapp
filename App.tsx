@@ -6,25 +6,29 @@ import React, {
 } from 'react';
 import { View } from 'react-native';
 import { Provider as RNPProvider } from 'react-native-paper';
-import Entypo from '@expo/vector-icons/Entypo';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
-import { APP_NAME } from "./config";
+import { APP } from './src/config/app.type';
+import { agribankTheme, neomerxTheme } from './src/theme';
+
+import ConfirmOffer from './src/screens/ConfirmOffer';
 import { Home } from './src/screens/Home';
-import { themeFazendao, themeMerx } from './src/styles/theme';
+
+import { APP_NAME } from "./config";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
-  const theme = useMemo(() => APP_NAME === 'fazendao' ? themeFazendao : themeMerx, []);
+  const theme = useMemo(() => APP_NAME === APP.AGRI_BANK ? agribankTheme : neomerxTheme, []);
   
   useEffect(() => {
     async function prepare() {
       try {
-        await Font.loadAsync(Entypo.font);
+        await Font.loadAsync(FontAwesome.font);
         await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (e) {
         console.warn(e);
@@ -49,6 +53,9 @@ export default function App() {
   return (
     <RNPProvider
       theme={theme}
+      settings={{
+        icon: props => <FontAwesome {...props} />,
+      }}
     >
       <View
         style={{ 

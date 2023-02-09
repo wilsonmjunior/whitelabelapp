@@ -1,20 +1,30 @@
-import * as React from 'react'
-import { Button as RNPButton } from 'react-native-paper'
+import React from 'react';
+import { 
+  Button as RNPButton, 
+  ButtonProps as RNPButtonProps,
+} from 'react-native-paper';
 
-import { useAppTheme } from '../../styles/theme';
+import { useAppTheme } from '../../theme';
 
-export const Button = () => {
+interface ButtonProps extends RNPButtonProps {
+  type: 'primary' | 'secondary' | 'success' | 'danger';
+}
+
+export const Button = ({ type, ...restProps }: ButtonProps) => {
   const theme = useAppTheme();
+
+  const toogleTypeColor = {
+    primary: theme.colors.primary,
+    secondary: theme.colors.secondary,
+    danger: theme.colors.error,
+  }
 
   return (
     <RNPButton
-      icon="camera"
-      mode="contained"
+      mode={restProps.mode ? restProps.mode : 'contained'}
       textColor={theme.colors.shape}
-      buttonColor={theme.colors.secondary}
-      onPress={() => console.log('Pressed')}
-    >
-      Press me
-    </RNPButton>
+      buttonColor={toogleTypeColor[type]}
+      {...restProps}
+    />
   )
 }
