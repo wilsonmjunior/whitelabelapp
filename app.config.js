@@ -1,45 +1,45 @@
 import { APP_NAME } from "./config";
 
 const configs = {
-  merx: {
+  NEO_MERX: {
     version: "1.0",
-    name: "Merx",
-    icon: "assets/merx/icon.png",
+    name: "Neo Merx",
+    icon: "assets/neomerx/icon.png",
     splash: {
-      image: "assets/merx/icon.png",
+      image: "assets/neomerx/icon.png",
     },
     android: {
       versionCode: 1,
-      package: "br.com.merx",
+      package: "br.com.neomerx",
     },
     ios: {
-      bundleIdentifier: "br.com.merx",
+      bundleIdentifier: "br.com.neomerx",
     },
     extra: {
-      buildType: "Merx",
+      buildType: "neomerx",
       eas: {
         projectId: "de22bcde-bdab-431b-8c95-27dbfe4b2e1d",
       },
     },
   },
-  fazendao: {
+  AGRI_BANK: {
     version: "1.0",
-    name: "Fazendão",
-    icon: "assets/fazendao/icon.png",
+    name: "Agri Bank",
+    icon: "assets/agribank/icon.png",
     splash: {
-      image: "assets/fazendao/icon.png",
+      image: "assets/agribank/icon.png",
       resizeMode: "contain",
       backgroundColor: "#cecece",
     },
     android: {
       versionCode: 1,
-      package: "br.com.fazendao",
+      package: "br.com.agribank",
     },
     ios: {
-      bundleIdentifier: "br.com.fazendao",
+      bundleIdentifier: "br.com.agribank",
     },
     extra: {
-      buildType: "fazendao",
+      buildType: "agribank",
       eas: {
         projectId: "6a9f5129-65d6-44b9-906a-07ca95ace68f",
       },

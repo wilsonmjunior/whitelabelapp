@@ -1,3 +1,3 @@
 module.exports = {
-  APP_NAME: "fazendao",
+  APP_NAME: "NEO_MERX",
 };
