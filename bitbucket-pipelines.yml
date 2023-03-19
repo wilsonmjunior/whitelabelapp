@@ -1,0 +1,8 @@
+image: ruby:2.7
+
+pipelines:
+  default:
+    - step:
+        name: Setup
+        script:
+          - gem install fastlane
