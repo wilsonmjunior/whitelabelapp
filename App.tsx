@@ -10,13 +10,11 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
-import { APP } from './src/config/app.type';
-import { agribankTheme, neomerxTheme } from './src/theme';
-
-import ConfirmOffer from './src/screens/ConfirmOffer';
-import { Home } from './src/screens/Home';
-
 import { APP_NAME } from "./config";
+import { APP } from './src/config/app.type';
+import { Home } from './src/screens/Home';
+import ConfirmOffer from './src/screens/ConfirmOffer';
+import { agribankTheme, neomerxTheme } from './src/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -64,7 +62,7 @@ export default function App() {
     <RNPProvider
       theme={theme}
       settings={{
-        icon: (props) => <FontAwesome {...props} />,
+        icon: ({ name, ...otherProps }) => <FontAwesome name={name as any} {...otherProps} />
       }}
     >
       <View
