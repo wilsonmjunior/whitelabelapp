@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { View } from 'react-native';
-import { Provider as RNPProvider } from 'react-native-paper';
+import { BottomNavigation, Provider as RNPProvider } from 'react-native-paper';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
@@ -22,9 +22,25 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'home', title: 'Home', focusedIcon: 'heart', unfocusedIcon: 'heart'},
+    { key: 'negotiations', title: 'Negociações', focusedIcon: 'investiment' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    home: Home,
+    negotiations: ConfirmOffer,
+  });
 
   const theme = useMemo(() => APP_NAME === APP.AGRI_BANK ? agribankTheme : neomerxTheme, []);
   
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
   useEffect(() => {
     async function prepare() {
       try {
@@ -40,12 +56,6 @@ export default function App() {
     prepare();
   }, []);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
   if (!appIsReady) {
     return null;
   }
@@ -54,7 +64,7 @@ export default function App() {
     <RNPProvider
       theme={theme}
       settings={{
-        icon: props => <FontAwesome {...props} />,
+        icon: (props) => <FontAwesome {...props} />,
       }}
     >
       <View
@@ -63,7 +73,12 @@ export default function App() {
         }}
         onLayout={onLayoutRootView}
       >
-        <Home />
+        <BottomNavigation
+          navigationState={{ index, routes }}
+          onIndexChange={setIndex}
+          renderScene={renderScene}
+          activeColor={theme.colors.primary}
+        />
       </View>
     </RNPProvider>
   );
